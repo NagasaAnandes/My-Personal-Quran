@@ -16,7 +16,6 @@ class MainPage extends StatelessWidget {
         children: [
           Center(child: Text("Page 1")), // Index 0
           Center(child: Text("Page 2")), // Placeholder untuk Shalat
-          Center(child: Text("Page 3")), // Placeholder untuk Calendar
           QuranPage(), // Index 3 (Quran)
           Center(child: Text("Page 5")), // Placeholder untuk Profile
         ],

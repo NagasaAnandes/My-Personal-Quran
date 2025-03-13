@@ -37,10 +37,6 @@ class BottomNavBar extends StatelessWidget {
             label: "Shalat",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_month_rounded, size: 28),
-            label: "Calendar",
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.menu_book, size: 28),
             label: "Qur'an",
           ),

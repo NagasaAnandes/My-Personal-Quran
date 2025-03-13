@@ -1,40 +1,29 @@
-import 'package:my_personal_alquran/data/datasource/remote/quran_services.dart';
-import 'package:my_personal_alquran/data/models/surah_model.dart';
+import 'package:my_personal_alquran/data/datasource/remote/api_services.dart';
+import 'package:my_personal_alquran/data/models/surat_detail_model.dart';
+import 'package:my_personal_alquran/data/models/surat_model.dart';
 
 class QuranRepository {
-  final QuranService _quranService = QuranService();
+  final ApiService apiService;
 
-  Future<List<SurahModel>> fetchAllSurahs() async {
+  QuranRepository(this.apiService);
+
+  /// Fetch daftar surah (QuranPage)
+  Future<List<SuratModel>> getAllSurats() async {
     try {
-      final response = await _quranService.getAllSurahs();
-      print("API Response: $response"); // Debugging
-
-      if (response.containsKey('data') && response['data'] is List) {
-        return (response['data'] as List)
-            .map((json) => SurahModel.fromJson(json))
-            .toList();
-      } else {
-        throw Exception("Invalid API Response");
-      }
+      return await apiService.getAllSurats();
     } catch (e) {
-      print("Error in fetchAllSurahs: $e");
-      throw Exception("Failed to load Surahs");
+      print("❌ Error in getAllSurahs: $e");
+      return [];
     }
   }
 
-  Future<SurahModel> fetchSurahDetail(int surahNumber) async {
+  /// Fetch detail surah + ayat (SurahDetailPage)
+  Future<SuratDetailModel?> fetchSuratDetail(int suratNumber) async {
     try {
-      final response = await _quranService.getSurah(surahNumber);
-      print("Surah Detail API Response: $response"); // Debugging
-
-      if (response.containsKey('data')) {
-        return SurahModel.fromJson(response['data']);
-      } else {
-        throw Exception("Invalid API Response");
-      }
+      return await apiService.getSurat(suratNumber);
     } catch (e) {
-      print("Error in fetchSurahDetail: $e");
-      throw Exception("Failed to load Surah Detail");
+      print("❌ Error fetching Surah Detail: $e");
+      return null;
     }
   }
 }

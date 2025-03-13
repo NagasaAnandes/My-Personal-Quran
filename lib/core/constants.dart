@@ -22,3 +22,7 @@ class AppColors {
 
   static const Color subtitle = Color(0xff7890CD);
 }
+
+class ApiConstants {
+  static const String baseUrl = 'https://equran.id/api/v2';
+}
